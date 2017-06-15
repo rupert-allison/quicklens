@@ -294,7 +294,8 @@ class bcl(object):
         except KeyError:
             raise AttributeError(spec)
 
-    def __mul__(self, fac):
+    ## RA modification for multiplication of bcl spectra (like division): weird that not implemented..
+    def __mul__(self, other):
         ret = copy.deepcopy(self)
 
         if np.isscalar(other):
