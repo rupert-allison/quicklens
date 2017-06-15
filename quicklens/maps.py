@@ -291,8 +291,10 @@ class tqumap(pix):
                 ret.qmap += self.qmap[i::fac,j::fac]
                 ret.umap += self.umap[i::fac,j::fac]
 
-        if intensive == True:
-            ret *= (1./fac**2)
+        if intensive == True: ## RA edit
+            ret.tmap *= (1./fac**2)
+            ret.qmap *= (1./fac**2)
+            ret.umap *= (1./fac**2)
 
         return ret
 

@@ -297,9 +297,14 @@ class bcl(object):
     def __mul__(self, fac):
         ret = copy.deepcopy(self)
 
-        for spec in ret.specs.keys():
-            ret.specs[spec][:] *= fac
-
+        if np.isscalar(other):
+            for spec in ret.specs.keys():
+                ret.specs[spec][:] *= other
+        elif (hasattr(other, 'lbins') and hasattr(other, 'specs')):
+            assert( np.all(self.lbins == other.lbins) )
+            for spec in ret.specs.keys():
+                ret.specs[spec][:] *= other.specs[spec][:]
+       
         return ret
 
     def __div__(self, other):
@@ -664,8 +669,8 @@ def cl2cfft(cl, pix):
     ell = pix.get_ell().flatten()
     
     ret = maps.cfft( nx=pix.nx, dx=pix.dx,
-                     fft=np.array( np.interp( ell, np.arange(0, len(cl)), cl, right=0 ).reshape(pix.nx, pix.ny), dtype=np.complex ),
-                     ny=pix.ny, dy=pix.dy )
+                     fft=np.array( np.interp( ell, np.arange(0, len(cl)), cl, right=0 ).reshape(pix.ny, pix.nx), dtype=np.complex ),
+                     ny=pix.ny, dy=pix.dy ) #RA: fixes issue with nx!=ny by reversing ny, nx in the reshape.
 
     return ret
 
