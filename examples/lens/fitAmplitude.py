@@ -19,18 +19,9 @@ fileDir = '/Users/allisonradmin/Documents/Cambridge/core/data/'
 for key in ['tt', 'eb' ]:
  	print '\nEstimator: ', key
 	## Data, modle template and uncertainties
-	#ell, data, m, sigma = np.loadtxt( fileDir + 'clpp_p'+key+'_noDust.dat', unpack = True )
-	#ell, data, m, sigma = np.loadtxt( fileDir + 'clpp_p'+key+'_Bfilt.dat', unpack = True )
-	#ell, data, m, sigma = np.loadtxt( fileDir + 'clpp_p'+key+'_B_coreNoise.dat', unpack = True )
-	#ell, data, m, sigma = np.loadtxt( fileDir + 'clpp_p'+key+'_B_scaled_10pc_coreNoise.dat', unpack = True )
 	ell, data, m, sigma = np.loadtxt( fileDir + 'lmin_002_clpp_p'+key+'_Bfilt_noNoise.dat', unpack = True )
-	"""
-	#ell = ell[1:]
-	#data = data[1:]
-	#m = m[1:]
-	#sigma = sigma[1:]
-	"""
-	## Restrict range
+	
+	## Restrict fit range
 	lmax = 2000
 	lmin = 2 
 	inds = np.where( np.logical_and( ell >= lmin, ell < lmax ) )
@@ -48,12 +39,12 @@ for key in ['tt', 'eb' ]:
 
 	SNR    = Abar / sigA
 
-	#"""
-	#SNRell = (m / sigma)**2
-	#plt.plot( ell, SNRell )
-	#plt.show()
-	#print np.sqrt( np.sum(SNRell) )
-	#"""
+	"""
+	SNRell = (m / sigma)**2
+	plt.plot( ell, SNRell )
+	plt.show()
+	print np.sqrt( np.sum(SNRell) )
+	"""
 
 	chi2   = np.dot( data, np.dot( Ninv, data ) ) + np.dot( Abar * mTinvN, Abar * m - 2 * data )
 
