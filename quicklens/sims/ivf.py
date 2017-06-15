@@ -50,10 +50,10 @@ class library(object):
     def get_sim_t(self, i):
         """ return a maps.cfft object containing the temperature component of get_sim_teb(i). """
         return self.get_sim_teb(i).get_cffts()[0]
-    def get_sim_e(self, idx):
+    def get_sim_e(self, i): ## RA edit to remove bug, 9th Jan 2017
         """ return a maps.cfft object containing the e-mode component of get_sim_teb(i). """
         return self.get_sim_teb(i).get_cffts()[1]
-    def get_sim_b(self, idx):
+    def get_sim_b(self, i): ## RA edit to remove bug, 9th Jan 2017
         """ return a maps.cfft object containing the b-mode component of get_sim_teb(i). """
         return self.get_sim_teb(i).get_cffts()[2]
 
