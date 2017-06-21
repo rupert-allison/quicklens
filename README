@@ -73,7 +73,7 @@ The work of adding a given dust realistion to your patch of interest is done in 
 You'll need to make sure in lmin.py (or other wrapper script) that the nx, ny of the cmb sims match those of the corresponding dustX.fits files that are read in. 
 For now, 'dustX.fits' is the required naming of the relevant dust files. This could and should be improved to allow for flexibility. 
 
-The demo script in examples/lens/lmin.py will need heavily editing to get it going on your machine (for now) since there's some hard coding of file locations. Also, the N1 needs calculating externally then pointing in this script. 
+The demo script in examples/lens/lmin.py will need heavily editing to get it going on your machine (for now) since there's some hard coding of file locations. Also, the N1 needs calculating externally then pointing to in this script. 
 I hope to clean this up at some point to make the user inputs more explicit at the top of the script. 
 There are a few bugs I had to fiddle with quicklens itself to get it running properly on my machine, most prominent the nx <-> ny confusion (see github commit messages for more detail). 
 
